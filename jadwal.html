@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monica Valery | Jadwal Pelajaran & Kegiatan Pribadi</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pastel: {
+              red: {
+                50: '#3F0E12', // deep burgundy bg
+                100: '#5C1217',
+                200: '#7A161D',
+                300: '#991B22',
+                400: '#BE123C', // rose-700
+                500: '#E11D48', // rose-600
+                600: '#F43F5E', // rose-500
+                700: '#FDA4AF', // rose-300
+              },
+              warm: {
+                800: '#4C1D13', // deep warm terracotta/rust bg
+                400: '#FA8C7C',
+              },
+              slate: {
+                50: '#F8FAFC',
+                100: '#F1F5F9',
+                200: '#E2E8F0',
+                300: '#CBD5E1',
+                450: '#94A3B8',
+                800: '#1E293B',
+                900: '#0F172A',
+                950: '#030712',
+              }
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          boxShadow: {
+            'pastel-sm': '0 2px 8px -1px rgba(225, 29, 72, 0.15), 0 1px 3px -1px rgba(225, 29, 72, 0.05)',
+            'pastel': '0 10px 25px -5px rgba(225, 29, 72, 0.2), 0 8px 16px -6px rgba(225, 29, 72, 0.1)',
+            'pastel-lg': '0 20px 40px -10px rgba(225, 29, 72, 0.3), 0 15px 25px -10px rgba(225, 29, 72, 0.15)',
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  <!-- JavaScript Code -->
+  <script src="app.js" defer></script>
+</head>
+
+<body
+  class="text-pastel-slate-300 min-h-screen flex flex-col font-sans selection:bg-pastel-red-100/30 selection:text-pastel-red-700">
+
+  <!-- Sticky Top Navigation Bar -->
+  <header class="sticky top-0 z-40 w-full glass-nav border-b border-pastel-red-100/10 shadow-pastel-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-18">
+
+        <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center">
+          <a href="index.html" class="flex items-center space-x-2 group">
+            <div
+              class="w-8 h-8 rounded-lg bg-gradient-to-tr from-pastel-red-400 to-rose-900 flex items-center justify-center text-white shadow-pastel-sm transition-transform duration-300 group-hover:scale-105">
+              <i class="fa-solid fa-code text-xs"></i>
+            </div>
+            <span class="font-display font-bold text-lg sm:text-xl tracking-tight text-white">
+              <span class="text-pastel-red-600">&lt;</span>monica<span class="text-pastel-slate-450">.</span>valery<span
+                class="text-pastel-red-650">/&gt;</span>
+            </span>
+          </a>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex space-x-1 lg:space-x-2">
+          <a href="index.html" id="nav-dashboard"
+            class="nav-btn px-3 py-2 rounded-xl text-sm font-semibold text-pastel-slate-450 hover:text-pastel-red-700 hover:bg-pastel-red-50/20 border border-transparent hover:border-pastel-red-100/10 transition-all duration-300">
+            <i class="fa-solid fa-house-chimney mr-1.5 text-xs opacity-80"></i>Dashboard
+          </a>
+          <a href="jadwal.html" id="nav-jadwal"
+            class="nav-btn px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-300 text-pastel-red-700 bg-pastel-red-50/30 border border-pastel-red-100/20">
+            <i class="fa-solid fa-calendar-days mr-1.5 text-xs opacity-80"></i>Jadwal
+          </a>
+          <a href="profil.html" id="nav-profil"
+            class="nav-btn px-3 py-2 rounded-xl text-sm font-semibold text-pastel-slate-450 hover:text-pastel-red-700 hover:bg-pastel-red-50/20 border border-transparent hover:border-pastel-red-100/10 transition-all duration-300">
+            <i class="fa-solid fa-user mr-1.5 text-xs opacity-80"></i>Profil
+          </a>
+          <a href="informatika.html" id="nav-informatika"
+            class="nav-btn px-3 py-2 rounded-xl text-sm font-semibold text-pastel-slate-450 hover:text-pastel-red-700 hover:bg-pastel-red-50/20 border border-transparent hover:border-pastel-red-100/10 transition-all duration-300">
+            <i class="fa-solid fa-laptop-code mr-1.5 text-xs opacity-80"></i>Informatika
+          </a>
+          <a href="bahasa.html" id="nav-bahasa-indonesia"
+            class="nav-btn px-3 py-2 rounded-xl text-sm font-semibold text-pastel-slate-450 hover:text-pastel-red-700 hover:bg-pastel-red-50/20 border border-transparent hover:border-pastel-red-100/10 transition-all duration-300">
+            <i class="fa-solid fa-book-open mr-1.5 text-xs opacity-80"></i>Bahasa Indonesia
+          </a>
+        </nav>
+
+        <!-- CTA & Quick Actions -->
+        <div class="hidden md:flex items-center space-x-3">
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="flex items-center md:hidden">
+          <button onclick="openAddTaskModal()"
+            class="mr-2 p-2 rounded-lg bg-pastel-red-50/30 text-pastel-red-600 text-xs font-bold flex items-center justify-center w-8 h-8">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+          <button id="mobile-menu-btn"
+            class="p-2 rounded-lg text-pastel-slate-300 hover:text-pastel-red-500 hover:bg-pastel-red-50/10 transition-colors focus:outline-none">
+            <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu"
+      class="hidden md:hidden px-4 pt-2 pb-4 bg-pastel-slate-955/95 border-b border-pastel-red-100/10 animate-fade-in shadow-pastel">
+      <div class="flex flex-col space-y-1.5">
+        <a href="index.html" id="mob-nav-dashboard"
+          class="flex items-center px-4 py-2.5 rounded-xl text-sm font-semibold text-pastel-slate-450 hover:text-pastel-red-650 hover:bg-pastel-red-50/10">
+          <i class="fa-solid fa-house-chimney w-5 mr-1 text-xs"></i>Dashboard
+        </a>
+        <a href="jadwal.html" id="mob-nav-jadwal"
+          class="flex items-center px-4 py-2.5 rounded-xl text-sm font-semibold text-pastel-red-700 bg-pastel-red-50/20 border border-pastel-red-100/10">
+          <i class="fa-solid fa-calendar-days w-5 mr-1 text-xs"></i>Jadwal
+        </a>
+        <a href="profil.html" id="mob-nav-profil"
+          class="flex items-center px-4 py-2.5 rounded-xl text-sm font-semibold text-pastel-slate-450 hover:text-pastel-red-600 hover:bg-pastel-red-50/10">
+          <i class="fa-solid fa-user w-5 mr-1 text-xs"></i>Profil
+        </a>
+        <a href="informatika.html" id="mob-nav-informatika"
+          class="flex items-center px-4 py-2.5 rounded-xl text-sm font-semibold text-pastel-slate-450 hover:text-pastel-red-600 hover:bg-pastel-red-50/10">
+          <i class="fa-solid fa-laptop-code w-5 mr-1 text-xs"></i>Informatika
+        </a>
+        <a href="bahasa.html" id="mob-nav-bahasa-indonesia"
+          class="flex items-center px-4 py-2.5 rounded-xl text-sm font-semibold text-pastel-slate-450 hover:text-pastel-red-600 hover:bg-pastel-red-50/10">
+          <i class="fa-solid fa-book-open w-5 mr-1 text-xs"></i>Bahasa Indonesia
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+
+    <!-- TAB 2: JADWAL -->
+    <section id="tab-jadwal" class="tab-panel space-y-8">
+
+      <div class="glass-card rounded-3xl p-8 border border-white/10">
+
+        <h1 class="text-3xl font-bold text-white mb-2">
+          📅 Jadwal Pelajaran
+        </h1>
+
+        <p class="text-stone-400 mb-8">
+          Jadwal pelajaran sekolah Senin sampai Jumat.
+        </p>
+
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6">
+
+        <!-- SENIN -->
+        <div
+          class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+
+          <h3 class="font-bold text-white mb-4">Senin</h3>
+
+          <div class="space-y-4">
+
+            <div
+              class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300 bg-pastel-red-500/10">
+              <p class="text-xs text-pastel-red-200 font-medium">07.30 - 09.00</p>
+              <p class="text-base font-bold text-white mt-1">👥 Sosiologi</p>
+              <p class="text-xs text-stone-300 mt-1">👨‍🏫 Pak Cornel</p>
+            </div>
+
+            <div class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm bg-yellow-500/10">
+              <p class="text-xs text-yellow-300 font-medium">09.00 - 09.30</p>
+              <p class="text-base font-bold text-yellow-200 mt-1">☕ Istirahat</p>
+            </div>
+
+            <div
+              class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300 bg-pastel-red-500/10">
+              <p class="text-xs text-pastel-red-200 font-medium">09.30 - 10.50</p>
+              <p class="text-base font-bold text-white mt-1">🈶 Mandarin</p>
+              <p class="text-xs text-stone-300 mt-1">👩‍🏫 Laoshi Jun</p>
+            </div>
+
+            <div
+              class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300 bg-pastel-red-500/10">
+              <p class="text-xs text-pastel-red-200 font-medium">10.50 - 11.30</p>
+              <p class="text-base font-bold text-white mt-1">❤️ Budi Pekerti</p>
+              <p class="text-xs text-stone-300 mt-1">👩‍🏫 Bu Suwarni</p>
+            </div>
+
+            <div
+              class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300 bg-pastel-red-500/10">
+              <p class="text-xs text-pastel-red-200 font-medium">11.30 - 12.10</p>
+              <p class="text-base font-bold text-white mt-1">👥 Sosiologi</p>
+              <p class="text-xs text-stone-300 mt-1">👨‍🏫 Pak Cornel</p>
+            </div>
+
+            <div class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm bg-yellow-500/10">
+              <p class="text-xs text-yellow-300 font-medium">12.10 - 12.40</p>
+              <p class="text-base font-bold text-yellow-200 mt-1">☕ Istirahat</p>
+            </div>
+
+            <div
+              class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300 bg-pastel-red-500/10">
+              <p class="text-xs text-pastel-red-200 font-medium">12.40 - 13.20</p>
+              <p class="text-base font-bold text-white mt-1">🧮 Matematika Wajib</p>
+              <p class="text-xs text-stone-300 mt-1">👨‍🏫 Pak Jefry</p>
+            </div>
+
+            <div
+              class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300 bg-pastel-red-500/10">
+              <p class="text-xs text-pastel-red-200 font-medium">13.20 - 14.40</p>
+              <p class="text-base font-bold text-white mt-1">💰 Ekonomi</p>
+              <p class="text-xs text-stone-300 mt-1">👩‍🏫 Miss Debie (Wali Kelas)</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SELASA -->
+        <div
+          class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+
+          <h3 class="font-bold text-white mb-4">Selasa</h3>
+          <div class="space-y-4">
+
+            <div
+              class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300 bg-pastel-red-500/10">
+              <p class="text-xs text-pastel-red-200 font-medium">06.45 - 08.15</p>
+              <p class="text-base font-bold text-white mt-1">🙏 Agama</p>
+              <p class="text-xs text-stone-300 mt-1">👨‍🏫 Pak Dedi</p>
+            </div>
+
+            <div
+              class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300 bg-pastel-red-500/10">
+              <p class="text-xs text-pastel-red-200 font-medium">08.15 - 09.45</p>
+              <p class="text-base font-bold text-white mt-1">📖 Bahasa Indonesia</p>
+              <p class="text-xs text-stone-300 mt-1">👩‍🏫 Bu Ruly</p>
+            </div>
+
+            <div class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm bg-yellow-500/10">
+              <p class="text-xs text-yellow-300 font-medium">09.45 - 10.05</p>
+              <p class="text-base font-bold text-yellow-200 mt-1">☕ Istirahat</p>
+            </div>
+
+            <div
+              class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300 bg-pastel-red-500/10">
+              <p class="text-xs text-pastel-red-200 font-medium">10.05 - 11.35</p>
+              <p class="text-base font-bold text-white mt-1">🌍 Geografi</p>
+              <p class="text-xs text-stone-300 mt-1">👨‍🏫 Pak Fajar</p>
+            </div>
+
+            <div class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm bg-yellow-500/10">
+              <p class="text-xs text-yellow-300 font-medium">11.35 - 12.00</p>
+              <p class="text-base font-bold text-yellow-200 mt-1">☕ Istirahat</p>
+            </div>
+
+            <div
+              class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300 bg-pastel-red-500/10">
+              <p class="text-xs text-pastel-red-200 font-medium">12.00 - 13.20</p>
+              <p class="text-base font-bold text-white mt-1">💰 Ekonomi</p>
+              <p class="text-xs text-stone-300 mt-1">👩‍🏫 Miss Debie (Wali Kelas)</p>
+            </div>
+
+            <div
+              class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300 bg-pastel-red-500/10">
+              <p class="text-xs text-pastel-red-200 font-medium">13.20 - 14.30</p>
+              <p class="text-base font-bold text-white mt-1">👥 Sosiologi</p>
+              <p class="text-xs text-stone-300 mt-1">👨‍🏫 Pak Cornel</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RABU -->
+        <div
+          class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+
+          <h3 class="font-bold text-white mb-4">Rabu</h3>
+
+          <div class="space-y-4">
+
+            <div
+              class="p-4 rounded-xl glass-card bg-pastel-red-500/10 border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+              <p class="text-xs text-pastel-red-200 font-medium">06.45 - 08.15</p>
+              <p class="text-base font-bold text-white mt-1">💻 Informatika</p>
+              <p class="text-xs text-stone-300 mt-1">👨‍🏫 Pak Yahya</p>
+            </div>
+
+            <div
+              class="p-4 rounded-xl glass-card bg-pastel-red-500/10 border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+              <p class="text-xs text-pastel-red-200 font-medium">08.15 - 09.00</p>
+              <p class="text-base font-bold text-white mt-1">🈶 Mandarin</p>
+              <p class="text-xs text-stone-300 mt-1">👩‍🏫 Laoshi Jun</p>
+            </div>
+
+            <div class="p-4 rounded-xl glass-card bg-yellow-500/10 border border-white/5 shadow-pastel-sm">
+              <p class="text-xs text-yellow-300 font-medium">09.00 - 09.30</p>
+              <p class="text-base font-bold text-yellow-200 mt-1">☕ Istirahat</p>
+            </div>
+
+            <div
+              class="p-4 rounded-xl glass-card bg-pastel-red-500/10 border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+              <p class="text-xs text-pastel-red-200 font-medium">09.30 - 10.10</p>
+              <p class="text-base font-bold text-white mt-1">🈶 Mandarin</p>
+              <p class="text-xs text-stone-300 mt-1">👩‍🏫 Laoshi Jun</p>
+            </div>
+
+            <div
+              class="p-4 rounded-xl glass-card bg-pastel-red-500/10 border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+              <p class="text-xs text-pastel-red-200 font-medium">10.10 - 10.50</p>
+              <p class="text-base font-bold text-white mt-1">👥 Sosiologi</p>
+              <p class="text-xs text-stone-300 mt-1">👨‍🏫 Pak Cornel</p>
+            </div>
+
+            <div
+              class="p-4 rounded-xl glass-card bg-pastel-red-500/10 border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+              <p class="text-xs text-pastel-red-200 font-medium">10.50 - 11.30</p>
+              <p class="text-base font-bold text-white mt-1">📖 Bahasa Indonesia</p>
+              <p class="text-xs text-stone-300 mt-1">👩‍🏫 Bu Ruly</p>
+            </div>
+
+            <div
+              class="p-4 rounded-xl glass-card bg-blue-500/10 border border-white/5 shadow-pastel-sm hover:border-blue-300/20 transition-all duration-300">
+              <p class="text-xs text-blue-300 font-medium">11.30 - 12.10</p>
+              <p class="text-base font-bold text-blue-200 mt-1">🎯 Kokurikuler</p>
+              <p class="text-xs text-stone-300 mt-1">👩‍🏫 Miss Debie (Wali Kelas)</p>
+            </div>
+
+            <div class="p-4 rounded-xl glass-card bg-yellow-500/10 border border-white/5 shadow-pastel-sm">
+              <p class="text-xs text-yellow-300 font-medium">12.10 - 12.40</p>
+              <p class="text-base font-bold text-yellow-200 mt-1">☕ Istirahat</p>
+            </div>
+
+            <div
+              class="p-4 rounded-xl glass-card bg-pastel-red-500/10 border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+              <p class="text-xs text-pastel-red-200 font-medium">12.40 - 14.00</p>
+              <p class="text-base font-bold text-white mt-1">🏛️ Sejarah</p>
+              <p class="text-xs text-stone-300 mt-1">👨‍🏫 Pak Cornel</p>
+            </div>
+
+            <div
+              class="p-4 rounded-xl glass-card bg-pastel-red-500/10 border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+              <p class="text-xs text-pastel-red-200 font-medium">14.00 - 15.20</p>
+              <p class="text-base font-bold text-white mt-1">🎨 Seni Budaya</p>
+              <p class="text-xs text-stone-300 mt-1">👩‍🏫 Miss Diyana</p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- KAMIS -->
+        <div
+          class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+
+          <h3 class="font-bold text-white mb-4">Kamis</h3>
+
+          <div class="space-y-4">
+
+            <div
+              class="p-4 rounded-xl glass-card bg-pastel-red-500/10 border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+              <p class="text-xs text-pastel-red-200 font-medium">06.45 - 08.15</p>
+              <p class="text-base font-bold text-white mt-1">💻 Informatika</p>
+              <p class="text-xs text-stone-300 mt-1">👨‍🏫 Pak Yahya</p>
+            </div>
+
+            <div
+              class="p-4 rounded-xl glass-card bg-pastel-red-500/10 border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+              <p class="text-xs text-pastel-red-200 font-medium">08.15 - 09.00</p>
+              <p class="text-base font-bold text-white mt-1">🧮 Matematika Wajib</p>
+              <p class="text-xs text-stone-300 mt-1">👨‍🏫 Pak Jefry</p>
+            </div>
+
+            <div class="p-4 rounded-xl glass-card bg-yellow-500/10 border border-white/5 shadow-pastel-sm">
+              <p class="text-xs text-yellow-300 font-medium">09.00 - 09.30</p>
+              <p class="text-base font-bold text-yellow-200 mt-1">☕ Istirahat</p>
+            </div>
+
+            <div
+              class="p-4 rounded-xl glass-card bg-pastel-red-500/10 border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+              <p class="text-xs text-pastel-red-200 font-medium">09.30 - 10.15</p>
+              <p class="text-base font-bold text-white mt-1">🧮 Matematika Wajib</p>
+              <p class="text-xs text-stone-300 mt-1">👨‍🏫 Pak Jefry</p>
+            </div>
+
+            <div
+              class="p-4 rounded-xl glass-card bg-pastel-red-500/10 border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+              <p class="text-xs text-pastel-red-200 font-medium">10.15 - 11.45</p>
+              <p class="text-base font-bold text-white mt-1">⚖️ PKN</p>
+              <p class="text-xs text-stone-300 mt-1">👨‍🏫 Pak Agus</p>
+            </div>
+
+            <div class="p-4 rounded-xl glass-card bg-yellow-500/10 border border-white/5 shadow-pastel-sm">
+              <p class="text-xs text-yellow-300 font-medium">11.45 - 12.30</p>
+              <p class="text-base font-bold text-yellow-200 mt-1">☕ Istirahat</p>
+            </div>
+
+
+            <div class="p-4 rounded-xl glass-card bg-emerald-950/20 border border-emerald-700/20 shadow-pastel-sm">
+              <p class="text-xs text-emerald-400 font-medium">11.45 - 12.30</p>
+              <p class="text-base font-bold text-emerald-100 mt-1">🍽️ Makan Bersama</p>
+            </div>
+
+
+            <div
+              class="p-4 rounded-xl glass-card bg-pastel-red-500/10 border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+              <p class="text-xs text-pastel-red-200 font-medium">12.30 - 14.35</p>
+              <p class="text-base font-bold text-white mt-1">🇬🇧 Bahasa Inggris</p>
+              <p class="text-xs text-stone-300 mt-1">👨‍🏫 Sir Satibi</p>
+            </div>
+
+            <div
+              class="p-4 rounded-xl glass-card bg-pastel-red-500/10 border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+              <p class="text-xs text-pastel-red-200 font-medium">14.35 - 15.15</p>
+              <p class="text-base font-bold text-white mt-1">💰 Ekonomi</p>
+              <p class="text-xs text-stone-300 mt-1">👩‍🏫 Miss Debie (Wali Kelas)</p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- JUMAT -->
+        <div
+          class="p-4 rounded-2xl glass-card border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+
+          <h3 class="font-bold text-white mb-4">Jumat</h3>
+
+          <div class="space-y-4">
+
+            <div
+              class="p-4 rounded-xl glass-card bg-pastel-red-500/10 border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+              <p class="text-xs text-pastel-red-200 font-medium">07.15 - 08.45</p>
+              <p class="text-base font-bold text-white mt-1">💼 PKWU</p>
+              <p class="text-xs text-stone-300 mt-1">👩‍🏫 Miss Debie (Wali Kelas)</p>
+            </div>
+
+            <div class="p-4 rounded-xl glass-card bg-yellow-500/10 border border-white/5 shadow-pastel-sm">
+              <p class="text-xs text-yellow-300 font-medium">08.45 - 09.15</p>
+              <p class="text-base font-bold text-yellow-200 mt-1">☕ Istirahat</p>
+            </div>
+
+            <div
+              class="p-4 rounded-xl glass-card bg-pastel-red-500/10 border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+              <p class="text-xs text-pastel-red-200 font-medium">09.15 - 10.45</p>
+              <p class="text-base font-bold text-white mt-1">⚽ PJOK</p>
+              <p class="text-xs text-stone-300 mt-1">👨‍🏫 Pak Sopyan</p>
+            </div>
+
+            <div
+              class="p-4 rounded-xl glass-card bg-pastel-red-500/10 border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+              <p class="text-xs text-pastel-red-200 font-medium">10.45 - 11.30</p>
+              <p class="text-base font-bold text-white mt-1">🤝 Bimbingan Konseling</p>
+              <p class="text-xs text-stone-300 mt-1">👩‍🏫 Miss Katarina</p>
+            </div>
+
+            <div
+              class="p-4 rounded-xl glass-card bg-purple-500/10 border border-white/5 shadow-pastel-sm hover:border-purple-300/20 transition-all duration-300">
+              <p class="text-xs text-purple-300 font-medium">11.30 - 12.30</p>
+              <p class="text-base font-bold text-purple-200 mt-1">🙏 Jumat Ibadah</p>
+            </div>
+
+            <div class="p-4 rounded-xl glass-card bg-yellow-500/10 border border-white/5 shadow-pastel-sm">
+              <p class="text-xs text-yellow-300 font-medium">12.30 - 13.00</p>
+              <p class="text-base font-bold text-yellow-200 mt-1">☕ Istirahat</p>
+            </div>
+
+            <div
+              class="p-4 rounded-xl glass-card bg-pastel-red-500/10 border border-white/5 shadow-pastel-sm hover:border-pastel-red-100/20 transition-all duration-300">
+              <p class="text-xs text-pastel-red-200 font-medium">13.00 - 14.30</p>
+              <p class="text-base font-bold text-white mt-1">🌍 Geografi</p>
+              <p class="text-xs text-stone-300 mt-1">👨‍🏫 Pak Fajar</p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="glass-card rounded-3xl p-8 border border-white/10">
+
+        <h1 class="text-3xl font-bold text-white mb-5">
+          📝 Jadwal Pribadi
+        </h1>
+
+        <div class="overflow-x-auto">
+
+          <table class="w-full">
+
+            <thead>
+
+              <tr class="border-b border-white/10 text-left">
+
+                <th class="py-3">Jam</th>
+
+                <th>Kegiatan</th>
+
+                <th>Catatan</th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              <tr class="border-b border-white/5">
+
+                <td class="py-3">05.30</td>
+
+                <td>Bangun Pagi</td>
+
+                <td>-</td>
+
+              </tr>
+
+              <tr class="border-b border-white/5">
+
+                <td class="py-3">16.00</td>
+
+                <td>Belajar</td>
+
+                <td>-</td>
+
+              </tr>
+
+              <tr>
+
+                <td class="py-3">20.00</td>
+
+                <td>Mengerjakan Tugas</td>
+
+                <td>-</td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer Area -->
+  <footer class="mt-auto border-t border-white/5 bg-black/40 backdrop-blur-md py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+
+        <!-- Branding / Copyright -->
+        <div class="flex items-center space-x-2 text-center md:text-left">
+          <div
+            class="w-6 h-6 rounded bg-gradient-to-tr from-pastel-red-400 to-rose-955 flex items-center justify-center text-white text-[10px]">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <span class="text-xs text-pastel-slate-450 font-medium">
+            &copy; 2026 Valery Monica. | SMA Cinta Kasih Tzu Chi
+          </span>
+        </div>
+
+        <!-- Social Media Footer Links -->
+        <div class="flex items-center space-x-4">
+          <a href="https://wa.me/6285890079188" target="_blank"
+            class="text-pastel-slate-450 hover:text-pastel-red-600 transition-colors text-sm" title="Whatsapp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+          <a href="https://www.instagram.com/monmonnicav?igsh=MThzNGo5bWo4NDR0cQ==" target="_blank"
+            class="text-pastel-slate-450 hover:text-pastel-red-600 transition-colors text-sm" title="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://linkedin.com" target="_blank"
+            class="text-pastel-slate-450 hover:text-pastel-red-600 transition-colors text-sm" title="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank"
+            class="text-pastel-slate-450 hover:text-pastel-red-600 transition-colors text-sm" title="Twitter / X">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL DIALOG: TAMBAH TUGAS (CMS MINI SIMULATION) -->
+  <div id="add-task-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+    <!-- Backdrop overlay -->
+    <div onclick="closeAddTaskModal()"
+      class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300"></div>
+
+    <!-- Modal container -->
+    <div id="add-task-modal-container"
+      class="relative bg-stone-955 rounded-3xl border border-pastel-red-100/10 p-6 sm:p-8 max-w-lg w-full mx-4 shadow-pastel-lg transform transition-all duration-300 scale-95 opacity-0 overflow-y-auto max-h-[90vh] text-pastel-slate-300">
+      <button onclick="closeAddTaskModal()"
+        class="absolute top-4 right-4 text-pastel-slate-450 hover:text-white transition-colors">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <div class="mb-5">
+        <div class="inline-flex items-center space-x-2 text-pastel-red-650 text-xs font-bold uppercase mb-1">
+          <i class="fa-solid fa-laptop-file"></i>
+          <span>Simulasi CMS Portfolio</span>
+        </div>
+        <h3 class="font-display font-extrabold text-xl text-white">Tambah Tugas Baru</h3>
+        <p class="text-pastel-slate-450 text-xs mt-0.5">Tugas baru akan ditambahkan secara dinamis ke browser lokal Anda
+          (LocalStorage).</p>
+      </div>
+
+      <form id="add-task-form" class="space-y-4">
+        <!-- Mapel / Subject -->
+        <div class="space-y-1">
+          <label for="task-subject" class="text-xs font-semibold text-pastel-slate-350 block">Mata Pelajaran</label>
+          <select id="task-subject" required
+            class="w-full px-4 py-2.5 rounded-xl border border-white/10 bg-stone-900/80 focus:bg-stone-900 focus:border-pastel-red-500 focus:ring-2 focus:ring-pastel-red-100/20 outline-none text-xs transition-all text-white">
+            <option value="Informatika">Informatika</option>
+            <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+          </select>
+        </div>
+
+        <!-- Judul Tugas -->
+        <div class="space-y-1">
+          <label for="task-title" class="text-xs font-semibold text-pastel-slate-350 block">Judul Tugas</label>
+          <input type="text" id="task-title" required placeholder="Contoh: Membuat Website Grid Tailwind"
+            class="w-full px-4 py-2.5 rounded-xl border border-white/10 bg-stone-900/60 focus:bg-stone-900 focus:border-pastel-red-500 focus:ring-2 focus:ring-pastel-red-100/20 outline-none text-xs transition-all text-white placeholder:text-slate-500">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Kategori -->
+          <div class="space-y-1">
+            <label for="task-category" class="text-xs font-semibold text-pastel-slate-350 block">Kategori / Tag</label>
+            <select id="task-category" required
+              class="w-full px-4 py-2.5 rounded-xl border border-white/10 bg-stone-900/80 focus:bg-stone-900 focus:border-pastel-red-500 focus:ring-2 focus:ring-pastel-red-100/20 outline-none text-xs transition-all text-white">
+            </select>
+          </div>
+
+          <!-- Tanggal Pengumpulan -->
+          <div class="space-y-1">
+            <label for="task-date" class="text-xs font-semibold text-pastel-slate-350 block">Tanggal Selesai</label>
+            <input type="date" id="task-date" required
+              class="w-full px-4 py-2.5 rounded-xl border border-white/10 bg-stone-900/60 focus:bg-stone-900 focus:border-pastel-red-500 focus:ring-2 focus:ring-pastel-red-100/20 outline-none text-xs transition-all text-white">
+          </div>
+        </div>
+
+        <!-- Deskripsi Pendek -->
+        <div class="space-y-1">
+          <label for="task-desc-short" class="text-xs font-semibold text-pastel-slate-350 block">Deskripsi Singkat
+            (Ringkasan di Kartu)</label>
+          <input type="text" id="task-desc-short" required placeholder="Ringkasan tugas dalam 1 kalimat..."
+            class="w-full px-4 py-2.5 rounded-xl border border-white/10 bg-stone-900/60 focus:bg-stone-900 focus:border-pastel-red-500 focus:ring-2 focus:ring-pastel-red-100/20 outline-none text-xs transition-all text-white placeholder:text-slate-500">
+        </div>
+
+        <!-- Konten Detail Tugas (Rich Text Simulation) -->
+        <div class="space-y-1">
+          <label for="task-desc-full" class="text-xs font-semibold text-pastel-slate-350 block">Konten Detail Tugas
+            (Ditampilkan di Modal Baca)</label>
+          <textarea id="task-desc-full" rows="5" required
+            placeholder="Tuliskan isi detail tugas, analisis, atau link demo code di sini..."
+            class="w-full px-4 py-2.5 rounded-xl border border-white/10 bg-stone-900/60 focus:bg-stone-900 focus:border-pastel-red-500 focus:ring-2 focus:ring-pastel-red-100/20 outline-none text-xs transition-all text-white placeholder:text-slate-500 resize-none"></textarea>
+        </div>
+
+        <div class="pt-2 flex items-center justify-end gap-2">
+          <button type="button" onclick="closeAddTaskModal()"
+            class="px-4 py-2.5 rounded-xl border border-white/10 text-pastel-slate-450 text-xs font-semibold hover:bg-white/5 transition-colors">
+            Batal
+          </button>
+          <button type="submit"
+            class="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-pastel-red-400 to-pastel-red-500 hover:from-pastel-red-500 hover:to-pastel-red-650 shadow-pastel transition-all">
+            Simpan Tugas
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL DIALOG: DETAIL / BACA TUGAS -->
+  <div id="detail-task-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+    <!-- Backdrop overlay -->
+    <div onclick="closeDetailTaskModal()"
+      class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300"></div>
+
+    <!-- Modal container -->
+    <div id="detail-task-modal-container"
+      class="relative bg-stone-955 rounded-3xl border border-pastel-red-100/10 p-6 sm:p-8 max-w-2xl w-full mx-4 shadow-pastel-lg transform transition-all duration-300 scale-95 opacity-0 overflow-y-auto max-h-[90vh] text-pastel-slate-300">
+      <button onclick="closeDetailTaskModal()"
+        class="absolute top-4 right-4 text-pastel-slate-450 hover:text-white transition-colors">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <!-- Dynamic content structure -->
+      <div id="detail-modal-content" class="space-y-6">
+      </div>
+
+      <div class="pt-6 border-t border-white/5 mt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <!-- Metadata: date -->
+        <span id="detail-modal-date" class="text-xs text-pastel-slate-450 flex items-center gap-1.5">
+          <i class="fa-regular fa-calendar"></i> Tanggal Selesai: -
+        </span>
+
+        <!-- Action tools -->
+        <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+          <button id="detail-delete-btn"
+            class="px-4 py-2 rounded-xl text-xs text-red-400 hover:bg-red-955/20 border border-transparent hover:border-red-900/30 transition-all font-semibold flex items-center gap-1.5">
+            <i class="fa-regular fa-trash-can"></i> Hapus Tugas
+          </button>
+          <button onclick="closeDetailTaskModal()"
+            class="w-full sm:w-auto px-5 py-2.5 rounded-xl text-xs font-semibold text-pastel-slate-300 bg-white/5 hover:bg-white/10 transition-colors text-center">
+            Tutup
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col space-y-2 pointer-events-none">
+  </div>
+
+</body>
+
+</html>
