@@ -1230,9 +1230,9 @@ const MUSIC_TRACKS = [
     src: "assets/Music/Thank u, next.mp3"
   },
   {
-    title: "Thank u, next",
-    artist: "Ariana Grande",
-    src: "assets/Music/Thank u, next.mp3"
+    title: "Ga peka",
+    artist: "Dia",
+    src: "assets/Music/Ga peka.mp3"
   }
 ];
 
