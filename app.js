@@ -1445,47 +1445,343 @@ function renderDashboardPlayer(container) {
 
 function renderFloatingMiniPlayer() {
   let el = document.getElementById('floating-mini-player');
+
+  // Kalau belum ada, buat player
   if (!el) {
     el = document.createElement('div');
     el.id = 'floating-mini-player';
-    el.className = 'floating-player-card flex items-center justify-between p-2.5 px-3.5';
+
+    el.className = `
+      floating-player-card
+      flex items-center justify-between
+      p-2.5 px-3.5
+      fixed z-[9998]
+    `;
+
+    el.style.right = '1.5rem';
+    el.style.bottom = '1.5rem';
+
     document.body.appendChild(el);
   }
 
   el.innerHTML = `
-    <!-- Mini Song Info -->
-    <div class="flex-grow min-w-0 mr-3">
-      <h5 id="fl-track-title" class="font-display font-bold text-white text-[11px] truncate leading-tight">Track Title</h5>
-      <p id="fl-track-artist" class="text-pastel-slate-455 text-[9px] truncate leading-none mt-0.5">Artist Name</p>
-    </div>
-    
-    <!-- Mini Controls -->
-    <div class="flex items-center space-x-2.5 flex-shrink-0">
-      <button id="fl-btn-playlist" class="w-6.5 h-6.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-pastel-slate-350 flex items-center justify-center shadow transition-all p-1.5" title="Daftar Lagu">
-        <i class="fa-solid fa-list text-[8px]"></i>
-      </button>
-      <button id="fl-btn-prev" class="text-pastel-slate-455 hover:text-white p-1 transition-colors" title="Sebelumnya">
-        <i class="fa-solid fa-backward-step text-[10px]"></i>
-      </button>
-      <button id="fl-btn-play" class="w-7 h-7 rounded-full bg-pastel-red-650/90 hover:bg-pastel-red-500 text-white flex items-center justify-center shadow transition-all duration-200" title="Putar/Jeda">
-        <i class="fa-solid fa-play text-[9px] ml-0.5" id="fl-play-icon"></i>
-      </button>
-      <button id="fl-btn-next" class="text-pastel-slate-455 hover:text-white p-1 transition-colors" title="Selanjutnya">
-        <i class="fa-solid fa-forward-step text-[10px]"></i>
-      </button>
+    <!-- Drag Handle -->
+    <div
+      id="fl-drag-handle"
+      class="flex-grow min-w-0 mr-3 cursor-move select-none"
+      title="Geser music player">
+
+      <div class="flex items-center gap-2">
+
+        <div
+          class="w-7 h-7 rounded-lg
+          bg-pastel-red-50/20
+          border border-pastel-red-100/10
+          flex items-center justify-center
+          flex-shrink-0">
+
+          <i class="fa-solid fa-music text-[9px] text-pastel-red-500"></i>
+
+        </div>
+
+        <div class="min-w-0">
+
+          <h5
+            id="fl-track-title"
+            class="font-display font-bold text-white text-[11px] truncate leading-tight">
+            Track Title
+          </h5>
+
+          <p
+            id="fl-track-artist"
+            class="text-pastel-slate-455 text-[9px] truncate leading-none mt-0.5">
+            Artist Name
+          </p>
+
+        </div>
+
+      </div>
+
     </div>
 
-    <!-- Small top-aligned thin progress bar -->
-    <div class="absolute top-0 left-0 right-0 h-[2px] bg-white/5 rounded-t-full overflow-hidden">
-      <div id="fl-progress-bar" class="h-full bg-pastel-red-600 transition-all duration-100" style="width: 0%;"></div>
+
+    <!-- Controls -->
+    <div class="flex items-center space-x-2.5 flex-shrink-0">
+
+      <button
+        id="fl-btn-playlist"
+        class="w-6 h-6 rounded-full
+        bg-white/5 hover:bg-white/10
+        border border-white/10
+        text-pastel-slate-350
+        flex items-center justify-center
+        shadow transition-all p-1"
+        title="Daftar Lagu">
+
+        <i class="fa-solid fa-list text-[8px]"></i>
+
+      </button>
+
+
+      <button
+        id="fl-btn-prev"
+        class="text-pastel-slate-455 hover:text-white p-1 transition-colors"
+        title="Sebelumnya">
+
+        <i class="fa-solid fa-backward-step text-[10px]"></i>
+
+      </button>
+
+
+      <button
+        id="fl-btn-play"
+        class="w-7 h-7 rounded-full
+        bg-pastel-red-650/90
+        hover:bg-pastel-red-500
+        text-white
+        flex items-center justify-center
+        shadow transition-all duration-200"
+        title="Putar/Jeda">
+
+        <i
+          class="fa-solid fa-play text-[9px] ml-0.5"
+          id="fl-play-icon">
+        </i>
+
+      </button>
+
+
+      <button
+        id="fl-btn-next"
+        class="text-pastel-slate-455 hover:text-white p-1 transition-colors"
+        title="Selanjutnya">
+
+        <i class="fa-solid fa-forward-step text-[10px]"></i>
+
+      </button>
+
+
+      <!-- Close -->
+      <button
+        id="fl-btn-close"
+        class="text-pastel-slate-455 hover:text-red-400
+        p-1 transition-colors"
+        title="Tutup Music Player">
+
+        <i class="fa-solid fa-xmark text-[10px]"></i>
+
+      </button>
+
+    </div>
+
+
+    <!-- Progress -->
+    <div
+      class="absolute top-0 left-0 right-0
+      h-[2px]
+      bg-white/5
+      rounded-t-full
+      overflow-hidden">
+
+      <div
+        id="fl-progress-bar"
+        class="h-full bg-pastel-red-600 transition-all duration-100"
+        style="width: 0%;">
+      </div>
+
     </div>
   `;
 
-  // Attach event listeners to floating player elements
-  document.getElementById('fl-btn-play').addEventListener('click', togglePlay);
-  document.getElementById('fl-btn-next').addEventListener('click', nextTrack);
-  document.getElementById('fl-btn-prev').addEventListener('click', prevTrack);
-  document.getElementById('fl-btn-playlist').addEventListener('click', () => togglePlaylistPopup());
+
+  // ==========================================
+  // BUTTON EVENTS
+  // ==========================================
+
+  document
+    .getElementById('fl-btn-play')
+    .addEventListener('click', togglePlay);
+
+  document
+    .getElementById('fl-btn-next')
+    .addEventListener('click', nextTrack);
+
+  document
+    .getElementById('fl-btn-prev')
+    .addEventListener('click', prevTrack);
+
+  document
+    .getElementById('fl-btn-playlist')
+    .addEventListener('click', () => {
+      togglePlaylistPopup();
+    });
+
+
+  // ==========================================
+  // CLOSE BUTTON
+  // ==========================================
+
+  document
+    .getElementById('fl-btn-close')
+    .addEventListener('click', () => {
+
+      el.classList.add('hidden');
+
+      showMusicLauncher();
+
+    });
+
+
+  // ==========================================
+  // DRAG PLAYER
+  // ==========================================
+
+  makeMusicPlayerDraggable(el);
+}
+
+function makeMusicPlayerDraggable(player) {
+
+  const handle = document.getElementById('fl-drag-handle');
+
+  if (!handle) return;
+
+
+  let isDragging = false;
+
+  let offsetX = 0;
+  let offsetY = 0;
+
+
+  handle.addEventListener('pointerdown', (e) => {
+
+    isDragging = true;
+
+    const rect = player.getBoundingClientRect();
+
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+
+    player.style.right = 'auto';
+    player.style.bottom = 'auto';
+
+    player.setPointerCapture(e.pointerId);
+
+    handle.classList.add('cursor-grabbing');
+
+  });
+
+
+  handle.addEventListener('pointermove', (e) => {
+
+    if (!isDragging) return;
+
+
+    let x = e.clientX - offsetX;
+    let y = e.clientY - offsetY;
+
+
+    // Batas layar
+    const maxX = window.innerWidth - player.offsetWidth;
+    const maxY = window.innerHeight - player.offsetHeight;
+
+
+    x = Math.max(5, Math.min(x, maxX - 5));
+    y = Math.max(5, Math.min(y, maxY - 5));
+
+
+    player.style.left = `${x}px`;
+    player.style.top = `${y}px`;
+
+  });
+
+
+  handle.addEventListener('pointerup', (e) => {
+
+    isDragging = false;
+
+    handle.classList.remove('cursor-grabbing');
+
+    try {
+      handle.releasePointerCapture(e.pointerId);
+    } catch (error) { }
+
+  });
+
+
+  handle.addEventListener('pointercancel', () => {
+
+    isDragging = false;
+
+    handle.classList.remove('cursor-grabbing');
+
+  });
+
+}
+
+function showMusicLauncher() {
+
+  let launcher = document.getElementById('music-launcher');
+
+
+  if (!launcher) {
+
+    launcher = document.createElement('button');
+
+    launcher.id = 'music-launcher';
+
+    launcher.className = `
+      fixed
+      bottom-6
+      right-6
+      z-[9999]
+      w-11
+      h-11
+      rounded-full
+      bg-pastel-red-650
+      hover:bg-pastel-red-500
+      text-white
+      shadow-pastel-lg
+      flex
+      items-center
+      justify-center
+      transition-all
+      duration-300
+      hover:scale-110
+    `;
+
+    launcher.innerHTML = `
+      <i class="fa-solid fa-music text-sm"></i>
+    `;
+
+    launcher.title = 'Buka Music Player';
+
+    document.body.appendChild(launcher);
+
+
+    launcher.addEventListener('click', () => {
+
+      const player =
+        document.getElementById('floating-mini-player');
+
+      if (player) {
+
+        player.classList.remove('hidden');
+
+        // Kembalikan posisi default kalau belum pernah dipindahkan
+        if (!player.style.left) {
+
+          player.style.right = '1.5rem';
+          player.style.bottom = '1.5rem';
+
+        }
+
+      }
+
+      launcher.remove();
+
+    });
+
+  }
+
 }
 
 function renderFloatingPlaylistPopup() {
